@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'question.dart';
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -25,6 +25,26 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  int inum=0;
+  List<Icon> scoreKeeper =[];
+  List<String> questions=[
+'you can lead a cow down stairs but not up stairs.',
+'approximetaley one quearter of human bones are in the feet.',
+'A slug\'s blood is green'
+  ];
+  List<bool> ans=[
+   false,true,true
+  ];
+  Question q1 = Question(q:'you can lead a cow down stairs but not up stairs.',a:false)
+;  //int get questions.length();
+ void inumchange(){
+   if (inum<= 2){
+     inum++;
+   }
+   else inum=0;
+ }
+
+  void iconb(){}//icons will e build here 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +57,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[inum],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -47,6 +67,7 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
+        //button 1
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
@@ -61,11 +82,27 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAns= ans[inum];
+                  if ( correctAns ==true){
+                    print('that boy smart');
+
+                  }
+                  else{ print('that boy dumb');}
+                setState(() {
+
+                  inumchange();
+                 
+                });
+
+            
+
                 //The user picked true.
               },
             ),
           ),
         ),
+
+        //button
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
@@ -79,12 +116,27 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAns= ans[inum];
+                   if ( correctAns ==true){
+                    print('that boy smart');
+
+                  }
+                  else{ print('that boy dumb');}
+                 setState(() {
+                  inumchange();
+                });
+
+
                 //The user picked false.
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+
+        )
+
       ],
     );
   }

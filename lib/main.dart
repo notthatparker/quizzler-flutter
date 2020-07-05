@@ -27,18 +27,15 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int inum=0;
   List<Icon> scoreKeeper =[];
-  List<String> questions=[
-'you can lead a cow down stairs but not up stairs.',
-'approximetaley one quearter of human bones are in the feet.',
-'A slug\'s blood is green'
+
+  List<Question> ql=[
+     Question(q:'you can lead a cow down stairs but not up stairs.',a:false),
+     Question(q:'approximetaley one quearter of human bones are in the feet.',a:false),
+     Question(q:'A slug\'s blood is green',a:false)
+
   ];
-  List<bool> ans=[
-   false,true,true
-  ];
-  Question q1 = Question(q:'you can lead a cow down stairs but not up stairs.',a:false)
-;  //int get questions.length();
  void inumchange(){
-   if (inum<= 2){
+   if (inum<2){
      inum++;
    }
    else inum=0;
@@ -57,7 +54,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[inum],
+                ql[inum].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,7 +79,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns= ans[inum];
+                bool correctAns= ql[inum].questionAns;
                   if ( correctAns ==true){
                     print('that boy smart');
 
@@ -116,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns= ans[inum];
+                bool correctAns= ql[inum].questionAns;
                    if ( correctAns ==true){
                     print('that boy smart');
 
